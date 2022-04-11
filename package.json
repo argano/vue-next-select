@@ -1,26 +1,7 @@
 {
-  "name": "vue-next-select",
-  "version": "2.10.2",
-  "description": "The complete selecting solution for Vue.js 3.x",
-  "keywords": [
-    "select",
-    "multipleselect",
-    "async",
-    "dropdown",
-    "vue",
-    "vue3",
-    "vue-next"
-  ],
-  "homepage": "https://github.com/iendeavor/vue-next-select#readme",
-  "bugs": {
-    "url": "https://github.com/iendeavor/vue-next-select/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iendeavor/vue-next-select.git"
-  },
+  "name": "@argano-dev/vns-20211209",
+  "version": "0.0.2",
   "license": "MIT",
-  "author": "Ernest <iattempt.net@gmail.com>",
   "main": "dist/vue-next-select.cjs.prod.js",
   "umd:main": "dist/vue-next-select.iife.prod.js",
   "unpkg": "dist/vue-next-select.iife.prod.js",
@@ -35,7 +16,6 @@
     "test": "yarn test:jest && yarn test:cypress",
     "test:cypress": "yarn cypress run",
     "test:jest": "jest --clearCache && jest test/**/*",
-    "release": "standard-version",
     "lint": "prettier --check *",
     "postinstall": "husky install",
     "prepublishOnly": "pinst --disable",

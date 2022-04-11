@@ -136,6 +136,7 @@
         :maxlength="maxlength"
         :clear-on-close="clearOnClose"
         :clear-on-select="clearOnSelect"
+        replace-instance-uid="aaa"
         @update:modelValue="payload => handleEvent('update:modelValue', payload)"
         @selected="payload => handleEvent('selected', payload)"
         @removed="payload => handleEvent('removed', payload)"

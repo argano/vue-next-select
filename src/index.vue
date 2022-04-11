@@ -15,13 +15,15 @@
     @keydown.home.prevent.exact="pointerFirst"
     @keydown.end.prevent.exact="pointerLast"
     @keydown="typeAhead"
-    :id="`vs${instance.uid}-combobox`"
+    :id="`vs${replaceInstanceUid || instance.uid}-combobox`"
     :role="searchable ? 'combobox' : null"
     :aria-expanded="isFocusing"
     aria-haspopup="listbox"
-    :aria-owns="`vs${instance.uid}-listbox`"
+    :aria-owns="`vs${replaceInstanceUid || instance.uid}-listbox`"
     :aria-activedescendant="
-      highlightedOriginalIndex === null ? null : `vs${instance.uid}-option-${highlightedOriginalIndex}`
+      highlightedOriginalIndex === null
+        ? null
+        : `vs${replaceInstanceUid || instance.uid}-option-${highlightedOriginalIndex}`
     "
     :aria-busy="loading"
     :aria-disabled="disabled"
@@ -72,7 +74,7 @@
           @escape="blur"
           :autofocus="autofocus || (taggable && searchable)"
           :tabindex="tabindex"
-          :comboboxUid="instance.uid"
+          :comboboxUid="replaceInstanceUid || instance.uid"
         />
         <template v-if="loading">
           <slot name="loading">
@@ -107,7 +109,7 @@
         @escape="blur"
         :autofocus="autofocus || (taggable && searchable)"
         :tabindex="tabindex"
-        :comboboxUid="instance.uid"
+        :comboboxUid="replaceInstanceUid || instance.uid"
       />
       <template v-if="loading">
         <slot name="loading">
@@ -125,7 +127,7 @@
       v-model="optionsWithInfo"
       @click-item="addOrRemoveOption"
       @mouseenter="(ev, option) => pointerSet(option.originalIndex)"
-      :comboboxUid="instance.uid"
+      :comboboxUid="replaceInstanceUid || instance.uid"
       :maxHeight="maxHeight"
       :highlightedOriginalIndex="highlightedOriginalIndex"
     >
@@ -233,8 +235,11 @@ const VueSelect = defineComponent({
       default: false,
       type: Boolean,
     },
-
     // misc
+    replaceInstanceUid: {
+      default: null,
+      type: String,
+    },
     autocomplete: {
       default: 'off',
       type: String,
@@ -741,7 +746,6 @@ const VueSelect = defineComponent({
       const hasEnoughSpaceBelow = spaceBelow >= props.maxHeight
       return hasEnoughSpaceBelow ? 'bottom' : 'top'
     }
-
     return {
       instance,
 
